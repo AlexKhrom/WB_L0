@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input placeholder="order id" id="input" style="text-align:center;width: 50%;display:block;margin: auto;margin-top: 30px;height: 40px">
+    <button onclick="getOrder()" style="width: 150px;display:block;margin: auto;margin-top: 30px;border-radius:3px;height: 40px;background-color: white; border: 1px solid black">show order</button>
+    <div id="orders">
+
+    </div>
+</body>
+</html>
+<script>
+    async function getOrder() {
+        console.log("get order!")
+        console.log("input value = ", document.getElementById("input").value)
+        console.log('hi there!!')
+        let response = await fetch('/api/getOrder/' + document.getElementById("input").value, {
+            method: 'GET',
+        });
+        console.log('hi there!!!')
+        let orders = await response.json()
+        console.log("orderssss = ",orders[0])
+        document.getElementById("orders").innerHTML += JSON.stringify(orders[0])+"<br><br>"
+    }
+</script>
